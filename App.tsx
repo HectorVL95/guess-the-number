@@ -1,13 +1,22 @@
-import { ScreenContent } from 'components/ScreenContent';
-import { StatusBar } from 'expo-status-bar';
+import { View, Text, ImageBackground } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
+import { ViewContext } from 'app/context/view-context';
+import { ViewProvider } from 'app/context/view-context';
+import ViewSwitch from 'app/switches/view-switch';
 
 import './global.css';
 
 export default function App() {
   return (
-    <>
-      <ScreenContent title="Home" path="App.tsx"></ScreenContent>
-      <StatusBar style="auto" />
-    </>
+      <LinearGradient colors={["#e6ff07ff", "#7c3709ff"]} className='flex-1'>
+        <ImageBackground imageStyle={{opacity: 0.2}} className='flex-1' source={require('assets/dices.jpg')}>
+            <SafeAreaView className='absolute jusify-center items-center w-full h-full'>
+              <ViewProvider>
+                <ViewSwitch />
+              </ViewProvider>
+            </SafeAreaView >
+        </ImageBackground>
+      </LinearGradient>
   );
 }
