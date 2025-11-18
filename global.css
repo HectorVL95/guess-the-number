@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-main-box-color {
+  background-color: #581307;
+}
+
+.text-main-box-color {
+  color: #c7aa08;
+}
+
+.bg-main-box-button-color {
+  background-color: #720a0a;
+}
+
+.input-border-color {
+  border-bottom: #c7aa08;
+}

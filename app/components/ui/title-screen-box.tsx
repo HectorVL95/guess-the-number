@@ -1,24 +1,11 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 
 const TitleScreenBox = ({title}: {title: string}) => {
   return (
-    <View style={styles.title_box}>
-      <Text style={styles.title_text}>{title}</Text>
+    <View className="border p-4 border-white border-8" >
+      <Text className="text-white font-bold text-4xl" >{title}</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  title_box: {
-    padding: 20,
-    borderWidth: 8,
-    borderColor: '#fff'
-  },
-  title_text: {
-    color: '#fff',
-    fontSize: 40,
-    fontWeight: 'bold'
-  } 
-})
 
 export default TitleScreenBox;

@@ -9,9 +9,9 @@ import './global.css';
 
 export default function App() {
   return (
-      <LinearGradient colors={["#e6ff07ff", "#7c3709ff"]} className='flex-1'>
+      <LinearGradient colors={["#9c200fff", "#828a16ff"]} className='flex-1'>
         <ImageBackground imageStyle={{opacity: 0.2}} className='flex-1' source={require('assets/dices.jpg')}>
-            <SafeAreaView className='absolute jusify-center items-center w-full h-full'>
+            <SafeAreaView className='absolute jusify-center items-center w-full h-full pt-4'>
               <ViewProvider>
                 <ViewSwitch />
               </ViewProvider>
