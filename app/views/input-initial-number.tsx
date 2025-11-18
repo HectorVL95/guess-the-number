@@ -6,7 +6,7 @@ const InputInitialNumber = () => {
   return (
     <View className="pt-8 gap-8">
       <TitleScreenBox title="Guess My Number" />
-      <MainBox  text="Enter a number"/>
+      <MainBox  text="Enter a number" show_input/>
     </View>
   );
 }

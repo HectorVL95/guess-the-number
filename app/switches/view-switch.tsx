@@ -7,7 +7,7 @@ import GuessNumber from 'app/views/guess-number';
 
 
 const ViewSwitch = () => {
-  const {current_view} = useContext(ViewContext)
+  const { current_view } = useContext(ViewContext)
 
   switch (current_view) {
     case ViewEnum.INPUT_INITIAL_NUMBER:

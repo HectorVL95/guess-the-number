@@ -1,19 +1,32 @@
-import { View, Text, TextInput, Alert} from "react-native";
 import Button from "./button";
 import { useState } from "react";
+import { useContext } from "react";
+import { ViewEnum } from "app/enums/view-enums";
+import { useNumber } from "app/hooks/useNumber";
+import RandomnNumber from "app/utils/randon-number";
+import { ViewContext } from "app/context/view-context";
+import { View, Text, TextInput, Alert} from "react-native";
+import { useNumbersToGuess } from "app/hooks/useNumbersToGuess";
 
+type MainBoxTypes = {
+  text: string,
+  show_input?: boolean,
+  left_btn_txt?: string,
+  right_btn_txt?: string,
+}
 
-const MainBox = ({text}: {text: string}) => {
-  const [input_value, set_input_value] = useState('')
+const MainBox: React.FC<MainBoxTypes> = ({ text, show_input, left_btn_txt = 'Reset', right_btn_txt = 'Confirm' }) => {
+  const [input_value, set_input_value] = useState('');
+  const { set_current_view } = useContext(ViewContext);
+  const { number, set_number } = useNumber()
+  const { numbers_to_guess, set_numbers_to_guess } = useNumbersToGuess()
 
   const handle_input = (e: string) => {
-    const input = parseInt(input_value)
-
-    set_input_value(e)
+    set_input_value(e);
   }
   
   const reset_input = () => {
-    set_input_value('')
+    set_input_value('');
   }
 
   const confirm_input_handler = () => {
@@ -27,25 +40,44 @@ const MainBox = ({text}: {text: string}) => {
       )
       return;
     }
+    set_number(parseInt(input_value))
+    set_current_view(ViewEnum.GUESS_NUMBER) 
 
+    const new_number = useNumber.getState().number
+
+    const random_numbers = [RandomnNumber(1, 99), RandomnNumber(1, 99), RandomnNumber(1, 99), new_number]
+    set_numbers_to_guess([...random_numbers])
+    
   }
 
+  console.log(number)
+  console.log(numbers_to_guess)
 
   return (
-    <View className="bg-main-box-color rounded-xl flex-col gap-2 py-4">
+    <View className="bg-main-box-color rounded-xl flex-col gap-4 py-4">
       <Text className="text-main-box-color text-center text-2xl">{text}</Text>
-      <View className="w-full justify-center items-center">
+     {
+      show_input && 
+      <View className="w-full justify-center h-[60px] items-center px-4">
         <TextInput
-          className="w-14 border-b input-border-color text-center text-4xl "
+          className="w-14 border-b input-border-color text-center text-4xl text-main-box-color"
           value={input_value}
+          style={{color: '#c7aa08'}}
           onChangeText={handle_input}
           keyboardType="number-pad"
           maxLength={2}
         />
       </View>
+      }
       <View className="gap-4 flex-row justify-center">
-        <Button text="Reset" on_click={reset_input}/>
-        <Button text="Confirm" on_click={confirm_input_handler}/>
+        <Button 
+          text={left_btn_txt} 
+          on_click={reset_input}
+        />
+        <Button 
+          text={right_btn_txt} 
+          on_click={confirm_input_handler}
+        />
       </View>
     </View>
   );
