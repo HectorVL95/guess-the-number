@@ -5,9 +5,9 @@ import GameOver from 'app/views/game-over';
 import InputInitialNumber from 'app/views/input-initial-number';
 import GuessNumber from 'app/views/guess-number';
 
-
 const ViewSwitch = () => {
   const { current_view } = useContext(ViewContext)
+
 
   switch (current_view) {
     case ViewEnum.INPUT_INITIAL_NUMBER:
