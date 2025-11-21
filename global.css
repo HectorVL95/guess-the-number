@@ -21,3 +21,8 @@
 .gold-border {
   border-color: #c7aa08;
 }
+
+.bg-unsuccessful-turn { 
+  background-color: #e6c50b;
+  border-color: #720a0a;
+}

@@ -14,14 +14,17 @@ const GameOver = () => {
   const { number, set_number } = useNumber();
   const { set_numbers_to_guess } = useNumbersToGuess();
   const { set_current_view } = useContext(ViewContext)
-  const { win } = useWinorLose()
+  const { win, set_win } = useWinorLose()
   const { turn } = useShowTurns()
 
   const reset_game = () => {
     set_number(null)
     set_numbers_to_guess([])
     set_current_view(ViewEnum.INPUT_INITIAL_NUMBER)
+    set_win(false)
   }
+
+  console.log(win)
 
   return (
     <View className="flex-col gap-12 py-8 justify-center items-center px-2">
@@ -31,8 +34,8 @@ const GameOver = () => {
           className="rounded-full w-72 h-72"
         />
         <View>
-          <Text className="text-center text-2xl font-semibold">{win ? 'You won' : 'You lost'}</Text>
-          <Text className="text-center text-2xl font-semibold">{win ? `It took you ${turn} turn${turn > 1 || turn === 0  ? 's' : ''} to guess ${number}` : `the correct number is ${number}`}
+          <Text className="text-center text-2xl font-semibold">{win === true ? 'You won' : 'You lost'}</Text>
+          <Text className="text-center text-2xl font-semibold">{win ? `It took you ${turn} turn${turn > 1 || turn === 0  ? 's' : ''} to guess the number ${number}` : `the correct number is ${number}`}
           </Text>
         </View>
         <Button text="Reset game" on_click={reset_game} />
